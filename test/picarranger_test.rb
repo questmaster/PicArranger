@@ -69,7 +69,7 @@ class PicArrangerTest < Test::Unit::TestCase
 
     crc32 = calc_file_crc(input)
 
-    assert_equal(2586205761, crc32)
+    assert_equal(309668251, crc32)
   end
 
   #
@@ -121,6 +121,7 @@ class PicArrangerTest < Test::Unit::TestCase
   #
   def test_do_move_images_dest_exists_copy_only
     options = default_options
+    options[:copy_only] = true
     create_existing_dest_jpg
 
     image = File.expand_path('B0019278.jpg')
@@ -139,7 +140,15 @@ class PicArrangerTest < Test::Unit::TestCase
     options = default_options
     options[:copy_only] = true
 
-    fail('not implemented')
+    image = File.expand_path('B0019278.jpg')
+    do_move_images_in_structure([image], options)
+
+    assert_true(File.exists?(image))
+    assert_true(File.directory?('2010'))
+    FileUtils.chdir('2010')
+    assert_true(File.directory?('3'))
+    FileUtils.chdir('3')
+    assert_true(File.exists?('B0019278.jpg'))
   end
 
   #
@@ -158,6 +167,6 @@ class PicArrangerTest < Test::Unit::TestCase
   def create_existing_dest_jpg
     new_path = '2010/3'
     FileUtils.mkpath(new_path)
-    FileUtils.mv('B0019278.jpg', File.expand_path(new_path))
+    FileUtils.cp('B0019278.jpg', File.expand_path(new_path))
   end
 end

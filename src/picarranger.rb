@@ -82,7 +82,7 @@ def do_move_images_in_structure (images, options)
       when /\.(jpg|jpeg)$/i; date_str = EXIFR::JPEG.new(image).date_time_original
       when /\.(tif|tiff|nef)$/i; date_str = EXIFR::TIFF.new(image).date_time_original
       else
-        raise 'No image found.'
+        raise 'Image #{image} has wrong extension.'
     end
 
     image_year = date_str.year.to_s
