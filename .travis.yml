@@ -2,5 +2,4 @@ language: ruby
 rvm:
   - 2.2.0
 install:
-  gem install rake
-  gem install exifr
+  gem install rake exifr
