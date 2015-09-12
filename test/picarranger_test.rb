@@ -10,7 +10,7 @@ class PicArrangerTest < Test::Unit::TestCase
     temp_dir = 'tmp'
 
     if @default_folder == nil
-      @default_folder = FileUtils.pwd
+      @default_folder = File.dirname(File.expand_path(__FILE__)) #FileUtils.pwd
     end
 
     FileUtils.mkdir(temp_dir)
