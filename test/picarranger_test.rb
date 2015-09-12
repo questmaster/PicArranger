@@ -71,7 +71,7 @@ class PicArrangerTest < Test::Unit::TestCase
 
   # Test file crc calculation
   def test_calc_file_crc
-    input = File.expand_path('B0019278.jpg')
+    input = File.expand_path('B0019278.JPG')
 
     crc32 = calc_file_crc(input)
 
@@ -82,7 +82,7 @@ class PicArrangerTest < Test::Unit::TestCase
   def test_do_move_images_jpg
     options = default_options
 
-    image = File.expand_path('B0019278.jpg')
+    image = File.expand_path('B0019278.JPG')
     do_move_images_in_structure([image], options)
 
     assert_false(File.exists?(image))
@@ -90,7 +90,7 @@ class PicArrangerTest < Test::Unit::TestCase
     FileUtils.chdir('2010')
     assert_true(File.directory?('3'))
     FileUtils.chdir('3')
-    assert_true(File.exists?('B0019278.jpg'))
+    assert_true(File.exists?('B0019278.JPG'))
   end
 
   #
@@ -113,7 +113,7 @@ class PicArrangerTest < Test::Unit::TestCase
     options = default_options
     create_existing_dest_jpg
 
-    image = File.expand_path('B0019278.jpg')
+    image = File.expand_path('B0019278.JPG')
     do_move_images_in_structure([image], options)
 
     assert_false(File.exists?(image))
@@ -121,7 +121,7 @@ class PicArrangerTest < Test::Unit::TestCase
     FileUtils.chdir('2010')
     assert_true(File.directory?('3'))
     FileUtils.chdir('3')
-    assert_true(File.exists?('B0019278.jpg'))
+    assert_true(File.exists?('B0019278.JPG'))
   end
 
   #
@@ -130,7 +130,7 @@ class PicArrangerTest < Test::Unit::TestCase
     options[:copy_only] = true
     create_existing_dest_jpg
 
-    image = File.expand_path('B0019278.jpg')
+    image = File.expand_path('B0019278.JPG')
     do_move_images_in_structure([image], options)
 
     assert_true(File.exists?(image))
@@ -138,7 +138,7 @@ class PicArrangerTest < Test::Unit::TestCase
     FileUtils.chdir('2010')
     assert_true(File.directory?('3'))
     FileUtils.chdir('3')
-    assert_true(File.exists?('B0019278.jpg'))
+    assert_true(File.exists?('B0019278.JPG'))
   end
 
   #
@@ -146,7 +146,7 @@ class PicArrangerTest < Test::Unit::TestCase
     options = default_options
     options[:copy_only] = true
 
-    image = File.expand_path('B0019278.jpg')
+    image = File.expand_path('B0019278.JPG')
     do_move_images_in_structure([image], options)
 
     assert_true(File.exists?(image))
@@ -154,7 +154,7 @@ class PicArrangerTest < Test::Unit::TestCase
     FileUtils.chdir('2010')
     assert_true(File.directory?('3'))
     FileUtils.chdir('3')
-    assert_true(File.exists?('B0019278.jpg'))
+    assert_true(File.exists?('B0019278.JPG'))
   end
 
   #
@@ -173,6 +173,6 @@ class PicArrangerTest < Test::Unit::TestCase
   def create_existing_dest_jpg
     new_path = '2010/3'
     FileUtils.mkpath(new_path)
-    FileUtils.cp('B0019278.jpg', File.expand_path(new_path))
+    FileUtils.cp('B0019278.JPG', File.expand_path(new_path))
   end
 end
