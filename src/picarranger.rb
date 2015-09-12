@@ -46,7 +46,7 @@ def find_image_files (path, options)
 
 # Sucht nach jpg's im aktuellen und darunter liegenden Verzeichnissen
     Dir.chdir(path)
-    Dir.glob("**/*.#{extension}") do |thefile|
+    Dir.glob("**/*.#{extension}", File::FNM_CASEFOLD) do |thefile|
       puts "    Found: #{thefile}" if options[:verbose]
 
       files << File.expand_path(thefile, path)
