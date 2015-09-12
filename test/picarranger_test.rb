@@ -10,12 +10,15 @@ class PicArrangerTest < Test::Unit::TestCase
     temp_dir = 'tmp'
 
     if @default_folder == nil
-      @default_folder = File.dirname(File.expand_path(__FILE__)) #FileUtils.pwd
+      @default_folder = File.dirname(File.expand_path(__FILE__))
     end
 
     FileUtils.mkdir(temp_dir)
     FileUtils.cp(['data/B0019278.JPG', 'data/B0020882.NEF'], temp_dir)
     FileUtils.chdir(temp_dir)
+
+    assert_true(File.exists?('B0019278.JPG'))
+    assert_true(File.exists?('B0020882.NEF'))
   end
 
   # Called after every test method runs. Can be used to tear
@@ -24,6 +27,8 @@ class PicArrangerTest < Test::Unit::TestCase
   def teardown
     FileUtils.chdir(@default_folder)
     FileUtils.rm_r('tmp')
+
+    assert_false(File.exists?('tmp'))
   end
 
   # Test commandline options parser

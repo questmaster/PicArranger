@@ -34,6 +34,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="exifr (v1.2.3.1, ruby-2.2.2-p95 (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="power_assert (v0.2.2, ruby-2.2.2-p95 (1)) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rdoc (v4.2.0, ruby-2.2.2-p95 (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="test-unit (v3.0.8, ruby-2.2.2-p95 (1)) [gem]" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
