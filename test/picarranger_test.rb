@@ -13,6 +13,7 @@ class PicArrangerTest < Test::Unit::TestCase
       @default_folder = File.dirname(File.expand_path(__FILE__))
     end
 
+    FileUtils.chdir(@default_folder)
     FileUtils.mkdir(temp_dir)
     FileUtils.cp(['data/B0019278.JPG', 'data/B0020882.NEF'], temp_dir)
     FileUtils.chdir(temp_dir)
