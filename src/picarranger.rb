@@ -82,7 +82,16 @@ def do_move_images_in_structure (images, options)
       when /\.(jpg|jpeg)$/i; date_str = EXIFR::JPEG.new(image).date_time_original
       when /\.(tif|tiff|nef)$/i; date_str = EXIFR::TIFF.new(image).date_time_original
       else
-        raise 'Image #{image} has wrong extension.'
+        raise 'Image #{image} has unsupported extension.'
+    end
+
+    # no exif data found; get oldest file timestamp
+    if date_str == nil
+      image_atime = File.atime(image)
+      image_ctime = File.ctime(image)
+      image_mtime = File.mtime(image)
+
+      date_str = [image_atime, image_ctime, image_mtime].min
     end
 
     image_year = date_str.year.to_s

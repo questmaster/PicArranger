@@ -79,6 +79,28 @@ class PicArrangerTest < Test::Unit::TestCase
   end
 
   #
+  def test_do_move_images_jpg_no_exif
+    options = default_options
+
+    expected_year = '2015'
+    expected_month = '8'
+
+    # prepare file without exif
+    FileUtils.cp(File.join(@default_folder, 'data', 'noexif.jpg'), @temp_folder)
+    image = File.expand_path('noexif.jpg')
+    FileUtils.touch(image, :mtime => Time.new(expected_year, expected_month))
+
+    do_move_images_in_structure([image], options)
+
+    assert_false(File.exists?(image))
+    assert_true(File.directory?(expected_year))
+    FileUtils.chdir(expected_year)
+    assert_true(File.directory?(expected_month))
+    FileUtils.chdir(expected_month)
+    assert_true(File.exists?('noexif.jpg'))
+  end
+
+  #
   def test_do_move_images_jpg
     options = default_options
 
